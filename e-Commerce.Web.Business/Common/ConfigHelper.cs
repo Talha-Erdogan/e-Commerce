@@ -22,7 +22,8 @@ namespace e_Commerce.Web.Business.Common
             {
                 //return System.Configuration.ConfigurationManager.AppSettings["PortalApiUrl"];
                 // todo: appsettings.json dosyasından okunması sağlanacak
-                return _configuration.GetConnectionString("AppSettings:ApiUrl");
+                var result= _configuration.GetSection("AppSettings:ApiUrl");
+                return result.Value;
             }
         }
 
@@ -32,7 +33,8 @@ namespace e_Commerce.Web.Business.Common
             {
                 //return System.Configuration.ConfigurationManager.AppSettings["PortalApiUrl"];
                 // todo: appsettings.json dosyasından okunması sağlanacak
-                return _configuration.GetConnectionString("AppSettings:ApiBaseUrl");
+                var result = _configuration.GetSection("AppSettings:ApiBaseUrl");
+                return result.Value;
             }
         }
 

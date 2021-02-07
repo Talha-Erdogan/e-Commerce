@@ -12,6 +12,6 @@ namespace e_Commerce.Web.Business.Models.Auth
         public string NameEN { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime? DeletedDateTime { get; set; }
-        public int DeletedBy { get; set; }
+        public int? DeletedBy { get; set; }
     }
 }

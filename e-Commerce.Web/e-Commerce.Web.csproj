@@ -9,4 +9,9 @@
     <ProjectReference Include="..\e-Commerce.Web.Business\e-Commerce.Web.Business.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\theme\vendors\datetime\fonts\" />
+    <Folder Include="wwwroot\theme\vendors\gijgo_datetimepicker\" />
+  </ItemGroup>
+
 </Project>

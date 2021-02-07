@@ -94,7 +94,7 @@ namespace e_Commerce.API.Filters
                 }
 
                 // çalışan bilgisi HttpContext.User alanına atanıyor
-                employeeId = payload["ID"].ToString();
+                employeeId = payload["Id"].ToString();
                 actionContext.HttpContext.User =
                     new System.Security.Claims.ClaimsPrincipal(new System.Security.Principal.GenericIdentity(employeeId));
             }
