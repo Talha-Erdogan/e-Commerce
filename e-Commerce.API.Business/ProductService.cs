@@ -22,15 +22,30 @@ namespace e_Commerce.API.Business
             _config = config;
         }
 
-        public PaginatedList<Product> GetAllPaginatedWithDetailBySearchFilter(ProductSearchFilter searchFilter)
+        public PaginatedList<ProductWithDetail> GetAllPaginatedWithDetailBySearchFilter(ProductSearchFilter searchFilter)
         {
-            PaginatedList<Product> resultList = new PaginatedList<Product>(new List<Product>(), 0, searchFilter.CurrentPage, searchFilter.PageSize, searchFilter.SortOn, searchFilter.SortDirection);
+            PaginatedList<ProductWithDetail> resultList = new PaginatedList<ProductWithDetail>(new List<ProductWithDetail>(), 0, searchFilter.CurrentPage, searchFilter.PageSize, searchFilter.SortOn, searchFilter.SortDirection);
 
             using (AppDBContext dbContext = new AppDBContext(_config))
             {
-                var query = from a in dbContext.Product
-                            where a.IsDeleted == false
-                            select a;
+                var query = from p in dbContext.Product.Where(x => x.IsDeleted == false)
+                            from c in dbContext.Category.Where(x => x.Id == p.CategoryId).DefaultIfEmpty()
+                            select new ProductWithDetail()
+                            {
+                                Id = p.Id,
+                                IsDeleted = p.IsDeleted,
+                                CategoryId = p.CategoryId,
+                                DeletedBy = p.DeletedBy,
+                                DeletedDateTime = p.DeletedDateTime,
+                                DescriptionEN = p.DescriptionEN,
+                                DescriptionTR = p.DescriptionTR,
+                                ImageFilePath = p.ImageFilePath,
+                                NameEN = p.NameEN,
+                                NameTR = p.NameTR,
+
+                                Category_NameTR = c == null ? String.Empty : c.NameTR,
+                                Category_NameEN = c == null ? String.Empty : c.NameEN
+                            };
 
                 // filtering
                 if (!string.IsNullOrEmpty(searchFilter.Filter_NameTR))
@@ -72,7 +87,7 @@ namespace e_Commerce.API.Business
                 query = query.Skip((searchFilter.CurrentPage - 1) * searchFilter.PageSize).Take(searchFilter.PageSize);
 
 
-                resultList = new PaginatedList<Product>(
+                resultList = new PaginatedList<ProductWithDetail>(
                     query.ToList(),
                     totalCount,
                     searchFilter.CurrentPage,
@@ -95,7 +110,51 @@ namespace e_Commerce.API.Business
             return resultList;
         }
 
-        public Product GetById(int id)
+        public List<ProductWithDetail> GetAllForCustomer(ProductSearchForCustomer searchForCustomer)
+        {
+            List<ProductWithDetail> resultList = new List<ProductWithDetail>();
+            using (AppDBContext dbContext = new AppDBContext(_config))
+            {
+                var query = from p in dbContext.Product.Where(x => x.IsDeleted == false)
+                            from c in dbContext.Category.Where(x => x.Id == p.CategoryId).DefaultIfEmpty()
+                            select new ProductWithDetail()
+                            {
+                                Id = p.Id,
+                                IsDeleted = p.IsDeleted,
+                                CategoryId = p.CategoryId,
+                                DeletedBy = p.DeletedBy,
+                                DeletedDateTime = p.DeletedDateTime,
+                                DescriptionEN = p.DescriptionEN,
+                                DescriptionTR = p.DescriptionTR,
+                                ImageFilePath = p.ImageFilePath,
+                                NameEN = p.NameEN,
+                                NameTR = p.NameTR,
+
+                                Category_NameTR = c == null ? String.Empty : c.NameTR,
+                                Category_NameEN = c == null ? String.Empty : c.NameEN
+                            };
+
+                // filtering
+                if (!string.IsNullOrEmpty(searchForCustomer.Filter_NameTR))
+                {
+                    query = query.Where(r => r.NameTR.Contains(searchForCustomer.Filter_NameTR));
+                }
+                if (!string.IsNullOrEmpty(searchForCustomer.Filter_NameEN))
+                {
+                    query = query.Where(r => r.NameEN.Contains(searchForCustomer.Filter_NameEN));
+                }
+                if (searchForCustomer.Filter_CategoryId.HasValue)
+                {
+                    query = query.Where(r => r.CategoryId == searchForCustomer.Filter_CategoryId.Value);
+                }
+                // asnotracking
+                query = query.AsNoTracking();
+                resultList = query.ToList();
+            }
+            return resultList;
+        }
+
+        public Product GetById(long id)
         {
             Product result = null;
 

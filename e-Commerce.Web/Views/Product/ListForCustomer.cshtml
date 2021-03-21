@@ -1,0 +1,17 @@
+﻿@using e_Commerce.Web.Business.Common
+@using e_Commerce.Web.Business.Enums
+@using e_Commerce.Web.Controllers
+
+@model e_Commerce.Web.Models.Product.ListForCustomerViewModel
+
+@{
+    ViewData["Title"] = "Product List For Customer";
+    Layout = null;
+}
+
+
+@foreach (var item in Model.DataList)
+{
+    <p>@item.NameTR</p>
+    <br />
+}

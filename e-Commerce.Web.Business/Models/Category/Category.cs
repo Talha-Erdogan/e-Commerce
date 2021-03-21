@@ -11,6 +11,6 @@ namespace e_Commerce.Web.Business.Models.Category
         public string NameEN { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime? DeletedDateTime { get; set; }
-        public int DeletedBy { get; set; }
+        public int? DeletedBy { get; set; }
     }
 }

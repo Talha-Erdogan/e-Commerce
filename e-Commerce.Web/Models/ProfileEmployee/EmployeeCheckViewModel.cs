@@ -8,7 +8,7 @@ namespace e_Commerce.Web.Models.ProfileEmployee
     public class EmployeeCheckViewModel
     {
         public bool Checked { get; set; }
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
 

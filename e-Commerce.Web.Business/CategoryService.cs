@@ -29,10 +29,27 @@ namespace e_Commerce.Web.Business
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", userToken);
                 httpClient.DefaultRequestHeaders.Add("DisplayLanguage", displayLanguage);
 
-                HttpResponseMessage response = httpClient.GetAsync(string.Format("v1/Auths?CurrentPage={0}&PageSize={1}&SortOn={2}&SortDirection={3}&&NameTR={4}&NameEN={5}",
+                HttpResponseMessage response = httpClient.GetAsync(string.Format("v1/Categories/withDetail?CurrentPage={0}&PageSize={1}&SortOn={2}&SortDirection={3}&&NameTR={4}&NameEN={5}",
                   searchFilter.CurrentPage, searchFilter.PageSize, searchFilter.SortOn, searchFilter.SortDirection,  searchFilter.Filter_NameTR, searchFilter.Filter_NameEN)).Result;
 
                 result = response.Content.ReadAsJsonAsync<ApiResponseModel<PaginatedList<Category>>>().Result;
+            }
+            return result;
+        }
+
+        public ApiResponseModel<List<Category>> GetAll(string userToken, string displayLanguage)
+        {
+            ApiResponseModel<List<Category>> result = new ApiResponseModel<List<Category>>();
+            // portal api'den çekme işlemi 
+            using (HttpClient httpClient = new HttpClient())
+            {
+                httpClient.BaseAddress = new Uri(ConfigHelper.ApiUrl);
+                httpClient.DefaultRequestHeaders.Accept.Clear();
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", userToken);
+                httpClient.DefaultRequestHeaders.Add("DisplayLanguage", displayLanguage);
+                HttpResponseMessage response = httpClient.GetAsync(string.Format("v1/Categories")).Result;
+                result = response.Content.ReadAsJsonAsync<ApiResponseModel<List<Category>>>().Result;
             }
             return result;
         }

@@ -9,9 +9,10 @@ namespace e_Commerce.API.Business.Interfaces
 {
     public interface IProductService
     {
-        PaginatedList<Product> GetAllPaginatedWithDetailBySearchFilter(ProductSearchFilter searchFilter);
+        PaginatedList<ProductWithDetail> GetAllPaginatedWithDetailBySearchFilter(ProductSearchFilter searchFilter);
         List<Product> GetAll();
-        Product GetById(int id);
+        List<ProductWithDetail> GetAllForCustomer(ProductSearchForCustomer searchForCustomer);
+        Product GetById(long id);
         int Add(Product record);
         int Update(Product record);
     }

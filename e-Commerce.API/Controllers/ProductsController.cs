@@ -36,7 +36,7 @@ namespace e_Commerce.API.Controllers
         [TokenAuthorizeFilter(AuthCodeStatic.PAGE_PRODUCT_LIST)]
         public IActionResult GetAllPaginatedWithDetail([FromQuery] GetAllPaginatedRequestModel requestModel, [FromHeader] string displayLanguage)
         {
-            var responseModel = new ApiResponseModel<PaginatedList<Product>>();
+            var responseModel = new ApiResponseModel<PaginatedList<ProductWithDetail>>();
             responseModel.DisplayLanguage = displayLanguage;
             var fileHostBaseUrl = GetFileHostBaseUrlFromCurrentRequest(); // şirket resimlerinin tam url adres bilgisi icin kullanilacak
 
@@ -72,10 +72,47 @@ namespace e_Commerce.API.Controllers
             }
         }
 
+        [Route("forCustomer")]
+        [HttpGet]
+        //[TokenAuthorizeFilter(AuthCodeStatic.PRODUCT_LISTFORCUSTOMER)]
+        public IActionResult GetAllForCustomer([FromQuery] GetAllForCustomerRequestModel requestModel, [FromHeader] string displayLanguage)
+        {
+            var responseModel = new ApiResponseModel<List<ProductWithDetail>>();
+            responseModel.DisplayLanguage = displayLanguage;
+            var fileHostBaseUrl = GetFileHostBaseUrlFromCurrentRequest(); // şirket resimlerinin tam url adres bilgisi icin kullanilacak
+
+            try
+            {
+                var searchFilter = new ProductSearchForCustomer();
+                searchFilter.Filter_NameTR = requestModel.NameTR;
+                searchFilter.Filter_NameEN = requestModel.NameEN;
+                searchFilter.Filter_CategoryId = requestModel.CategoryId;
+                responseModel.Data = _productService.GetAllForCustomer(searchFilter);
+
+                foreach (var item in responseModel.Data)
+                {
+                    if (!string.IsNullOrEmpty(item.ImageFilePath))
+                    {
+                        item.ImageFilePath = fileHostBaseUrl + item.ImageFilePath;
+                    }
+                }
+                responseModel.ResultStatusCode = ResultStatusCodeStatic.Success;
+                responseModel.ResultStatusMessage = "Success";
+                return Ok(responseModel);
+            }
+            catch (Exception ex)
+            {
+                responseModel.ResultStatusCode = ResultStatusCodeStatic.Error;
+                responseModel.ResultStatusMessage = ex.Message;
+                responseModel.Data = null;
+                return StatusCode(StatusCodes.Status500InternalServerError, responseModel);
+            }
+        }
+
         [Route("{Id}")]
         [HttpGet]
         [TokenAuthorizeFilter]
-        public IActionResult GetById(int id, [FromHeader] string displayLanguage)
+        public IActionResult GetById(long id, [FromHeader] string displayLanguage)
         {
             var responseModel = new ApiResponseModel<Product>();
             responseModel.DisplayLanguage = displayLanguage;
@@ -124,6 +161,7 @@ namespace e_Commerce.API.Controllers
                     record.ImageFilePath = "ProductFiles/" + requestModel.ImageFilePath;
                 }
                 record.CategoryId = requestModel.CategoryId;
+                record.IsDeleted = false;
 
                 var dbResult = _productService.Add(record);
 

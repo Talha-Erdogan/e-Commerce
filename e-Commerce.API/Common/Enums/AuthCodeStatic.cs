@@ -46,6 +46,8 @@ namespace e_Commerce.API.Common.Enums
         public const string PAGE_PRODUCT_EDIT = "PAGE_PRODUCT_EDIT";
         public const string PAGE_PRODUCT_DISPLAY = "PAGE_PRODUCT_DISPLAY";
         public const string PAGE_PRODUCT_DELETE = "PAGE_PRODUCT_DELETE";
+        public const string PRODUCT_LISTFORCUSTOMER = "PRODUCT_LISTFORCUSTOMER";
+        
 
     }
 }

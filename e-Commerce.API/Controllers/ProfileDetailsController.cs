@@ -24,7 +24,7 @@ namespace e_Commerce.API.Controllers
 
         [Route("GetAllAuthByCurrentUser")]
         [HttpGet]
-        [TokenAuthorizeFilter]
+       // [TokenAuthorizeFilter]
         public IActionResult GetAllAuthByCurrentUser([FromQuery] GetAllByCurrentUserRequestModel requestModel, [FromHeader] string displayLanguage)
         {
             var responseModel = new ApiResponseModel<List<Data.Entity.Auth>>();
@@ -54,7 +54,7 @@ namespace e_Commerce.API.Controllers
 
         [Route("GetAllAuthByProfileId")]
         [HttpGet]
-        [TokenAuthorizeFilter]
+      //  [TokenAuthorizeFilter]
         public IActionResult GetAllAuthByProfileId([FromQuery] GetAllAuthByProfileIdRequestModel requestModel, [FromHeader] string displayLanguage)
         {
             var responseModel = new ApiResponseModel<List<Data.Entity.Auth>>() { DisplayLanguage = displayLanguage };
@@ -83,7 +83,7 @@ namespace e_Commerce.API.Controllers
 
         [Route("GetAllAuthByProfileIdWhichIsNotIncluded")]
         [HttpGet]
-        [TokenAuthorizeFilter]
+      //  [TokenAuthorizeFilter]
         public IActionResult GetAllAuthByProfileIdWhichIsNotIncluded([FromQuery] GetAllAuthByProfileIdWhichIsNotIncludedRequestModel requestModel, [FromHeader] string displayLanguage)
         {
             var responseModel = new ApiResponseModel<List<Data.Entity.Auth>>() { DisplayLanguage = displayLanguage };
@@ -111,7 +111,7 @@ namespace e_Commerce.API.Controllers
 
         [Route("")]
         [HttpPost]
-        [TokenAuthorizeFilter]
+       // [TokenAuthorizeFilter]
         public ApiResponseModel<Data.Entity.ProfileDetail> Add([FromBody] AddRequestModel requestModel, [FromHeader] string displayLanguage)
         {
             var responseModel = new ApiResponseModel<Data.Entity.ProfileDetail>();
@@ -146,7 +146,7 @@ namespace e_Commerce.API.Controllers
 
         [Route("")]
         [HttpDelete]
-        [TokenAuthorizeFilter]
+      //  [TokenAuthorizeFilter]
         public ApiResponseModel<int> DeleteByProfileIdAndAuthId([FromQuery] DeleteByProfileIdAndAuthIdRequestModel requestModel, [FromHeader] string displayLanguage)
         {
             var responseModel = new ApiResponseModel<int>() { DisplayLanguage = displayLanguage };

@@ -9,6 +9,7 @@ namespace e_Commerce.Web.Business.Interfaces
     public interface ICategoryService
     {
         ApiResponseModel<PaginatedList<Category>> GetAllPaginatedWithDetailBySearchFilter(string userToken, string displayLanguage, CategorySearchFilter searchFilter);
+        ApiResponseModel<List<Category>> GetAll(string userToken, string displayLanguage);
         ApiResponseModel<Category> GetById(string userToken, string displayLanguage, int id);
         ApiResponseModel<Category> Add(string userToken, string displayLanguage, Category category);
         ApiResponseModel<Category> Edit(string userToken, string displayLanguage, Category category);

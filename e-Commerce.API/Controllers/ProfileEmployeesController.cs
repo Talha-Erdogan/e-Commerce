@@ -25,7 +25,7 @@ namespace e_Commerce.API.Controllers
 
         [Route("GetAllEmployeePaginatedWithDetail")]
         [HttpGet]
-        [TokenAuthorizeFilter]
+       // [TokenAuthorizeFilter]
         public ApiResponseModel<PaginatedList<Data.Entity.Employee>> GetAllEmployeePaginatedWithDetail([FromQuery] GetAllEmployeePaginatedRequestModel requestModel, [FromHeader] string displayLanguage)
         {
             var responseModel = new ApiResponseModel<PaginatedList<Data.Entity.Employee>>() { DisplayLanguage = displayLanguage };
@@ -53,7 +53,7 @@ namespace e_Commerce.API.Controllers
 
         [Route("GetAllEmployeeWhichIsNotIncludedPaginatedWithDetail")]
         [HttpGet]
-        [TokenAuthorizeFilter]
+      //  [TokenAuthorizeFilter]
         public ApiResponseModel<PaginatedList<Data.Entity.Employee>> GetAllEmployeeWhichIsNotIncludedPaginatedWithDetail([FromQuery] GetAllEmployeeWhichIsNotIncludedPaginatedRequestModel requestModel, [FromHeader] string displayLanguage)
         {
             var responseModel = new ApiResponseModel<PaginatedList<Data.Entity.Employee>>() { DisplayLanguage = displayLanguage };
@@ -82,7 +82,7 @@ namespace e_Commerce.API.Controllers
 
         [Route("GetAllProfileByCurrentUser")]
         [HttpGet]
-        [TokenAuthorizeFilter]
+     //   [TokenAuthorizeFilter]
         public ApiResponseModel<List<Data.Entity.Profile>> GetAllProfileByCurrentUser([FromQuery] GetAllProfileByCurrentUserRequestModel requestModel, [FromHeader] string displayLanguage)
         {
             var responseModel = new ApiResponseModel<List<Data.Entity.Profile>>();
@@ -111,7 +111,7 @@ namespace e_Commerce.API.Controllers
 
         [Route("")]
         [HttpPost]
-        [TokenAuthorizeFilter]
+     //   [TokenAuthorizeFilter]
         public ApiResponseModel<Data.Entity.ProfileEmployee> Add([FromBody] AddRequestModel requestModel, [FromHeader] string displayLanguage)
         {
             var responseModel = new ApiResponseModel<Data.Entity.ProfileEmployee>();
@@ -145,7 +145,7 @@ namespace e_Commerce.API.Controllers
 
         [Route("")]
         [HttpDelete]
-        [TokenAuthorizeFilter]
+     //   [TokenAuthorizeFilter]
         public ApiResponseModel<int> DeleteByProfileIdAndAuthId([FromQuery] DeleteByProfileIdAndEmployeeIdRequestModel requestModel, [FromHeader] string displayLanguage)
         {
             var responseModel = new ApiResponseModel<int>() { DisplayLanguage = displayLanguage };

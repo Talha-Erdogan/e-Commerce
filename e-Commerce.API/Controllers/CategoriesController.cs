@@ -28,9 +28,9 @@ namespace e_Commerce.API.Controllers
             _categoryService = categoryService;
         }
 
-        [Route("")]
+        [Route("withDetail")]
         [HttpGet]
-        [TokenAuthorizeFilter(AuthCodeStatic.PAGE_CATEGORY_LIST)]
+        //[TokenAuthorizeFilter(AuthCodeStatic.PAGE_CATEGORY_LIST)]
         public IActionResult GetAllPaginatedWithDetail([FromQuery] GetAllPaginatedRequestModel requestModel, [FromHeader] string displayLanguage)
         {
             var responseModel = new ApiResponseModel<PaginatedList<Category>>();
@@ -60,9 +60,30 @@ namespace e_Commerce.API.Controllers
             }
         }
 
+        public IActionResult GetAll([FromHeader] string displayLanguage)
+        {
+            ApiResponseModel<List<Data.Entity.Category>> responseModel = new ApiResponseModel<List<Data.Entity.Category>>() { DisplayLanguage = displayLanguage };
+            try
+            {
+                var categories = _categoryService.GetAll();
+                responseModel.Data = categories;
+                responseModel.ResultStatusCode = ResultStatusCodeStatic.Success;
+                responseModel.ResultStatusMessage = "Success";
+                return Ok(responseModel);
+            }
+            catch (Exception ex)
+            {
+                responseModel.ResultStatusCode = ResultStatusCodeStatic.Error;
+                responseModel.ResultStatusMessage = ex.Message;
+                responseModel.Data = null;
+                return StatusCode(StatusCodes.Status500InternalServerError, responseModel);
+            }
+        }
+
+
         [Route("{Id}")]
         [HttpGet]
-        [TokenAuthorizeFilter]
+       // [TokenAuthorizeFilter]
         public IActionResult GetById(int id, [FromHeader] string displayLanguage)
         {
             var responseModel = new ApiResponseModel<Category>();
@@ -85,7 +106,7 @@ namespace e_Commerce.API.Controllers
 
 
         [HttpPost]
-        [TokenAuthorizeFilter(AuthCodeStatic.PAGE_CATEGORY_ADD)]
+        //[TokenAuthorizeFilter(AuthCodeStatic.PAGE_CATEGORY_ADD)]
         public IActionResult Add([FromBody] AddRequestModel requestModel, [FromHeader] string displayLanguage)
         {
             var responseModel = new ApiResponseModel<Category>();
@@ -125,7 +146,7 @@ namespace e_Commerce.API.Controllers
 
         [Route("{Id}")]
         [HttpPut]
-        [TokenAuthorizeFilter(AuthCodeStatic.PAGE_CATEGORY_EDIT)]
+       //[TokenAuthorizeFilter(AuthCodeStatic.PAGE_CATEGORY_EDIT)]
         public IActionResult Edit(int id, [FromBody] AddRequestModel requestModel, [FromHeader] string displayLanguage)
         {
             var responseModel = new ApiResponseModel<Category>();
@@ -162,7 +183,7 @@ namespace e_Commerce.API.Controllers
 
         [Route("{Id}")]
         [HttpDelete]
-        [TokenAuthorizeFilter(AuthCodeStatic.PAGE_CATEGORY_DELETE)]
+        //[TokenAuthorizeFilter(AuthCodeStatic.PAGE_CATEGORY_DELETE)]
         public IActionResult Delete(int id, [FromHeader] string displayLanguage)
         {
             var responseModel = new ApiResponseModel<Category>();
