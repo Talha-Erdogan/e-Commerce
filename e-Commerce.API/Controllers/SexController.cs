@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using e_Commerce.API.Business.Interfaces;
 using e_Commerce.API.Common.Enums;
+using e_Commerce.API.Filters;
 using e_Commerce.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +23,7 @@ namespace e_Commerce.API.Controllers
 
         [Route("")]
         [HttpGet]
-        //[TokenAuthorizeFilter] // sadece oturum acilma kontrolu yapilir
+        [TokenAuthorizeFilter] // sadece oturum acilma kontrolu yapilir
         public IActionResult GetSex([FromHeader] string displayLanguage)
         {
             ApiResponseModel<List<Data.Entity.Sex>> responseModel = new ApiResponseModel<List<Data.Entity.Sex>>() { DisplayLanguage = displayLanguage };

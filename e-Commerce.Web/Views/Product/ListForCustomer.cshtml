@@ -6,12 +6,144 @@
 
 @{
     ViewData["Title"] = "Product List For Customer";
-    Layout = null;
+    Layout = "~/Views/Shared/_LayoutProduct.cshtml";
 }
 
 
-@foreach (var item in Model.DataList)
+@using (Html.BeginForm("ListForCustomer", "Product", FormMethod.Post, new { @class = "form-horizontal input-sm", @id = "filterForm" }))
 {
-    <p>@item.NameTR</p>
-    <br />
+    @Html.HiddenFor(m => m.Filter.Filter_CategoryId, new { @id = "hiddenCategoryId" });
+    <section class="hero hero-normal">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="hero__categories">
+                        <div class="hero__categories__all">
+                            <span>Tüm Kategoriler</span>
+                        </div>
+                        <ul>
+                            @foreach (var item in Model.FilterCategorySelectList)
+                            {
+                                <li id="category_id_@item.Value" class="categorySelect">@item.Text</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="hero__search">
+                        <div class="hero__search__form">
+                            @Html.TextBoxFor(m => m.Filter.Filter_NameTR, new { @class = "", @placeholder = "Name TR" , @style = "height:46px;border:none;" })
+                            @*<form action="#">
+                        <asp:TextBox ID="TextBox2" runat="server" Width="450px" placeholder="ara"></asp:TextBox>
+                        <asp:TextBox ID="TextBox3" runat="server" Width="450px" placeholder="ara2"></asp:TextBox>
+                        <asp:Button ID="Button1" runat="server" class="site-btn" Text="Ara" OnClick="Button1_Click1" />
+                    </form>*@
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3">
+                    <div class="hero__search">
+                        <div class="hero__search__form">
+                            @Html.TextBoxFor(m => m.Filter.Filter_NameEN, new { @class = "", @placeholder = "Name EN", @style = "height:46px;border:none;" })
+                            @*<form action="#">
+                        <asp:TextBox ID="TextBox2" runat="server" Width="450px" placeholder="ara"></asp:TextBox>
+                        <asp:TextBox ID="TextBox3" runat="server" Width="450px" placeholder="ara2"></asp:TextBox>
+                        <asp:Button ID="Button1" runat="server" class="site-btn" Text="Ara" OnClick="Button1_Click1" />
+                    </form>*@
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2">
+                    <div class="hero__search">
+                        <div class="hero__search__form">
+                            <button class="site-btn" type="submit" name="SubmitType" value="Ara">
+                                 Ara
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+}
+
+
+
+
+
+<!-- Hero Section End -->
+<!-- Product Section Begin -->
+<section class="product spad">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-lg-12 col-md-9">
+
+
+                    <div class="row">
+                        @*<p style="display: none;">
+            <asp:ListBox ID="ListBox1" runat="server"></asp:ListBox>
+            <asp:ListBox ID="ListBox2" runat="server"></asp:ListBox>
+            <asp:ListBox ID="ListBox3" runat="server"></asp:ListBox>
+        </p>*@
+                        @*for (int i = 0; i < ListBox1.Items.Count; i++)
+        {
+
+        %>*@
+
+                        @foreach (var item in Model.DataList)
+                        {
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="product__item">
+                                    <div class="product__item__pic set-bg" data-setbg="">
+                                        <img alt="" src="@item.ImageFilePath" />
+                                        <ul class="product__item__pic__hover">
+                                        </ul>
+                                    </div>
+
+                                    <div class="product__item__text">
+
+
+                                        <h6>@item.NameTR</h6>
+
+
+                                      
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+@section Scripts {
+    <!-- pagesize ve current page js  -->
+    <script>
+        $(document).ready(function () {
+
+            $(".categorySelect").click(function (e) {
+                var categoryId = this.id.replace("category_id_", "");
+                $('#hiddenCategoryId').val(categoryId);
+                $('#filterForm').submit();
+            });
+        }); // end of $(document).ready
+
+
+    </script>
+
 }

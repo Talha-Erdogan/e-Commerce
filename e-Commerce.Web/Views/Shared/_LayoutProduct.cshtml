@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - e_Commerce</title>
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/theme2/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/theme2/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/theme2/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/theme2/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="~/theme2/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="~/theme2/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/theme2/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/theme2/css/style.css" type="text/css">
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <div class="humberger__menu__overlay"></div>
+    <!-- Breadcrumb Section Begin -->
+    <div class="breadcrumb-section set-bg" data-setbg="theme2/img/breadcrumb.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Talha Web Sitesi Örneği</h2>
+                        <div class="breadcrumb__option">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Section End -->
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        Talha Erdoğan
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__right">
+                            <div class="header__top__right__social">
+                                <a href="https://github.com/Talha-Erdogan"><img href="https://github.com/Talha-Erdogan" width="20" height="20" src="theme2/img/git.png" /></a>
+                                <a href="https://stackoverflow.com/users/12416303/talha-erdogan"><img href="https://stackoverflow.com/users/12416303/talha-erdogan" width="20" height="20" src="theme2/img/stak.png" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </header>
+    <!-- Header Section End -->
+    <!-- Hero Section Begin -->
+    <div class="hero hero-normal">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </div>
+    <!--<section class="hero hero-normal">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="hero__categories">
+                    <div class="hero__categories__all">
+                        <i class="fa fa-bars"></i>
+                        <span>Tüm Kategoriler</span>
+                    </div>
+                    <ul>-->
+    <!-- todo:  burada kategorileri listele -->
+    <!--<li><a href="cevirmenler.aspx">Çevirmen Satın al</a></li>-->
+    <!--</ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-9">
+                    <div class="hero__search">
+                        <div class="hero__search__form">
+                            <form action="#">
+                                <asp:TextBox ID="TextBox2" runat="server" Width="450px" placeholder="ara"></asp:TextBox>
+                                <asp:TextBox ID="TextBox3" runat="server" Width="450px" placeholder="ara2"></asp:TextBox>
+                                <asp:Button ID="Button1" runat="server" class="site-btn" Text="Ara" OnClick="Button1_Click1" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>-->
+    <!-- Hero Section End -->
+    <!-- Product Section Begin -->
+    @*<section class="product spad">
+            <div class="container">
+                <div class="row">
+
+
+                    <div class="col-lg-12 col-md-9">
+
+
+                        <div class="row">
+                            <p style="display: none;">
+                                <asp:ListBox ID="ListBox1" runat="server"></asp:ListBox>
+                                <asp:ListBox ID="ListBox2" runat="server"></asp:ListBox>
+                                <asp:ListBox ID="ListBox3" runat="server"></asp:ListBox>
+                            </p>
+                            <% for (int i = 0; i < ListBox1.Items.Count; i++)
+                            {
+
+                            %>
+
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="product__item">
+                                    <div class="product__item__pic set-bg" data-setbg="">
+                                        <img alt="" src="<% Response.Write(ListBox3.Items[i].ToString()); %>" />
+                                        <ul class="product__item__pic__hover">
+                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                            <li><a href="checkout.aspx"><i class="fa fa-shopping-cart"></i></a></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="product__item__text">
+
+
+
+
+
+                                        <h6><%  Response.Write(ListBox1.Items[i].ToString());  %></h6>
+
+
+                                        <%
+
+                                        for (int j = 0; j < ListBox2.Items.Count; j++)
+                                        {
+                                        %>
+
+
+
+                                        <p><%  Response.Write(ListBox2.Items[i].ToString()); break;  %></p>
+
+                                        <%
+                                        }
+                                        %>
+                                        <h5>$30.00</h5>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <%
+                            }
+
+
+                            %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>*@
+    <!-- Product Section End -->
+    <!-- Footer Section Begin -->
+    <footer class="footer spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer__copyright">
+                        <div class="footer__copyright__text">
+                            <p>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Bu sitede ürünler vs admin ve kullanıcılar tarafından yüklenir. Müşteriler sadece ürünleri görüntüleyebilir şekilde tasarlandı. <i class="fa fa-heart" aria-hidden="true"></i>by <a href="" target="_blank">talhaerdogan</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
+                        </div>
+                        <div class="footer__copyright__payment">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+    <!-- Js Plugins -->
+    <script src="~/theme2/js/jquery-3.3.1.min.js"></script>
+    <script src="~/theme2/js/bootstrap.min.js"></script>
+    <script src="~/theme2/js/jquery.nice-select.min.js"></script>
+    <script src="~/theme2/js/jquery-ui.min.js"></script>
+    <script src="~/theme2/js/jquery.slicknav.js"></script>
+    <script src="~/theme2/js/mixitup.min.js"></script>
+    <script src="~/theme2/js/owl.carousel.min.js"></script>
+    <script src="~/theme2/js/main.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

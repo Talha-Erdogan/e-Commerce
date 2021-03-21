@@ -14,4 +14,15 @@
     <Folder Include="wwwroot\theme\vendors\gijgo_datetimepicker\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\theme2\js\bootstrap.min.js" />
+    <None Include="wwwroot\theme2\js\jquery-3.3.1.min.js" />
+    <None Include="wwwroot\theme2\js\jquery-ui.min.js" />
+    <None Include="wwwroot\theme2\js\jquery.nice-select.min.js" />
+    <None Include="wwwroot\theme2\js\jquery.slicknav.js" />
+    <None Include="wwwroot\theme2\js\main.js" />
+    <None Include="wwwroot\theme2\js\mixitup.min.js" />
+    <None Include="wwwroot\theme2\js\owl.carousel.min.js" />
+  </ItemGroup>
+
 </Project>

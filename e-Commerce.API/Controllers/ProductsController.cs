@@ -74,7 +74,7 @@ namespace e_Commerce.API.Controllers
 
         [Route("forCustomer")]
         [HttpGet]
-        //[TokenAuthorizeFilter(AuthCodeStatic.PRODUCT_LISTFORCUSTOMER)]
+        [TokenAuthorizeFilter(AuthCodeStatic.PRODUCT_LISTFORCUSTOMER)]
         public IActionResult GetAllForCustomer([FromQuery] GetAllForCustomerRequestModel requestModel, [FromHeader] string displayLanguage)
         {
             var responseModel = new ApiResponseModel<List<ProductWithDetail>>();

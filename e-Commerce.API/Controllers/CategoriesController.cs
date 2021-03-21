@@ -30,7 +30,7 @@ namespace e_Commerce.API.Controllers
 
         [Route("withDetail")]
         [HttpGet]
-        //[TokenAuthorizeFilter(AuthCodeStatic.PAGE_CATEGORY_LIST)]
+        [TokenAuthorizeFilter(AuthCodeStatic.PAGE_CATEGORY_LIST)]
         public IActionResult GetAllPaginatedWithDetail([FromQuery] GetAllPaginatedRequestModel requestModel, [FromHeader] string displayLanguage)
         {
             var responseModel = new ApiResponseModel<PaginatedList<Category>>();
@@ -83,7 +83,7 @@ namespace e_Commerce.API.Controllers
 
         [Route("{Id}")]
         [HttpGet]
-       // [TokenAuthorizeFilter]
+        [TokenAuthorizeFilter]
         public IActionResult GetById(int id, [FromHeader] string displayLanguage)
         {
             var responseModel = new ApiResponseModel<Category>();
@@ -106,7 +106,7 @@ namespace e_Commerce.API.Controllers
 
 
         [HttpPost]
-        //[TokenAuthorizeFilter(AuthCodeStatic.PAGE_CATEGORY_ADD)]
+        [TokenAuthorizeFilter(AuthCodeStatic.PAGE_CATEGORY_ADD)]
         public IActionResult Add([FromBody] AddRequestModel requestModel, [FromHeader] string displayLanguage)
         {
             var responseModel = new ApiResponseModel<Category>();
@@ -146,7 +146,7 @@ namespace e_Commerce.API.Controllers
 
         [Route("{Id}")]
         [HttpPut]
-       //[TokenAuthorizeFilter(AuthCodeStatic.PAGE_CATEGORY_EDIT)]
+        [TokenAuthorizeFilter(AuthCodeStatic.PAGE_CATEGORY_EDIT)]
         public IActionResult Edit(int id, [FromBody] AddRequestModel requestModel, [FromHeader] string displayLanguage)
         {
             var responseModel = new ApiResponseModel<Category>();
@@ -183,7 +183,7 @@ namespace e_Commerce.API.Controllers
 
         [Route("{Id}")]
         [HttpDelete]
-        //[TokenAuthorizeFilter(AuthCodeStatic.PAGE_CATEGORY_DELETE)]
+        [TokenAuthorizeFilter(AuthCodeStatic.PAGE_CATEGORY_DELETE)]
         public IActionResult Delete(int id, [FromHeader] string displayLanguage)
         {
             var responseModel = new ApiResponseModel<Category>();

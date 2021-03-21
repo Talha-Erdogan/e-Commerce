@@ -28,7 +28,7 @@ namespace e_Commerce.Web.Controllers
             _categoryService = categoryService;
         }
 
-        //[AppAuthorizeFilter(AuthCodeStatic.PAGE_PRODUCT_LIST)]
+        [AppAuthorizeFilter(AuthCodeStatic.PAGE_PRODUCT_LIST)]
         public ActionResult List(string errorMessage = "")
         {
             if (!string.IsNullOrEmpty(errorMessage))
@@ -68,7 +68,7 @@ namespace e_Commerce.Web.Controllers
             return View(model);
         }
 
-        //[AppAuthorizeFilter(AuthCodeStatic.PAGE_PRODUCT_LIST)]
+        [AppAuthorizeFilter(AuthCodeStatic.PAGE_PRODUCT_LIST)]
         [HttpPost]
         public ActionResult List(ListViewModel model)
         {
@@ -119,7 +119,7 @@ namespace e_Commerce.Web.Controllers
             return View(model);
         }
 
-        //[AppAuthorizeFilter(AuthCodeStatic.PAGE_PRODUCT_ADD)]
+        [AppAuthorizeFilter(AuthCodeStatic.PAGE_PRODUCT_ADD)]
         public ActionResult Add()
         {
             Models.Product.AddViewModel model = new AddViewModel();
@@ -131,7 +131,7 @@ namespace e_Commerce.Web.Controllers
             return View(model);
         }
 
-        //[AppAuthorizeFilter(AuthCodeStatic.PAGE_PRODUCT_ADD)]
+        [AppAuthorizeFilter(AuthCodeStatic.PAGE_PRODUCT_ADD)]
         [HttpPost]
         public ActionResult Add(Models.Product.AddViewModel model, IFormFile ImageFilePath)
         {
@@ -201,7 +201,7 @@ namespace e_Commerce.Web.Controllers
             }
         }
 
-        //[AppAuthorizeFilter(AuthCodeStatic.PAGE_PRODUCT_EDIT)]
+        [AppAuthorizeFilter(AuthCodeStatic.PAGE_PRODUCT_EDIT)]
         public ActionResult Edit(int id)
         {
             Models.Product.AddViewModel model = new AddViewModel();
@@ -232,7 +232,7 @@ namespace e_Commerce.Web.Controllers
             return View(model);
         }
 
-        //[AppAuthorizeFilter(AuthCodeStatic.PAGE_PRODUCT_EDIT)]
+        [AppAuthorizeFilter(AuthCodeStatic.PAGE_PRODUCT_EDIT)]
         [HttpPost]
         public ActionResult Edit(Models.Product.AddViewModel model, IFormFile ImageFilePath)
         {
@@ -306,7 +306,7 @@ namespace e_Commerce.Web.Controllers
             }
         }
 
-        //[AppAuthorizeFilter(AuthCodeStatic.PAGE_PRODUCT_DISPLAY)]
+        [AppAuthorizeFilter(AuthCodeStatic.PAGE_PRODUCT_DISPLAY)]
         public ActionResult Display(int id)
         {
             var apiBroadcastResponseModel = _productService.GetById(SessionHelper.CurrentUser.UserToken, SessionHelper.CurrentLanguageTwoChar, id);
@@ -360,7 +360,7 @@ namespace e_Commerce.Web.Controllers
 
 
         //müşteri ekranı için
-        //[AppAuthorizeFilter(AuthCodeStatic.PRODUCT_LISTFORCUSTOMER)]
+        [AppAuthorizeFilter(AuthCodeStatic.PRODUCT_LISTFORCUSTOMER)]
         public ActionResult ListForCustomer(string errorMessage = "")
         {
             if (!string.IsNullOrEmpty(errorMessage))
@@ -389,7 +389,7 @@ namespace e_Commerce.Web.Controllers
             return View(model);
         }
 
-        //[AppAuthorizeFilter(AuthCodeStatic.PRODUCT_LISTFORCUSTOMER)]
+        [AppAuthorizeFilter(AuthCodeStatic.PRODUCT_LISTFORCUSTOMER)]
         [HttpPost]
         public ActionResult ListForCustomer(ListForCustomerViewModel model)
         {

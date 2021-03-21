@@ -20,7 +20,7 @@ namespace e_Commerce.Web.Controllers
         {
             _profileService = profileService;
         }
-        //[AppAuthorizeFilter(AuthCodeStatic.PAGE_PROFILE_LIST)]
+        [AppAuthorizeFilter(AuthCodeStatic.PAGE_PROFILE_LIST)]
         public ActionResult List()
         {
             ListViewModel model = new ListViewModel();
@@ -49,7 +49,7 @@ namespace e_Commerce.Web.Controllers
             return View(model);
         }
 
-        //[AppAuthorizeFilter(AuthCodeStatic.PAGE_PROFILE_LIST)]
+        [AppAuthorizeFilter(AuthCodeStatic.PAGE_PROFILE_LIST)]
         [HttpPost]
         public ActionResult List(ListViewModel model)
         {
@@ -92,14 +92,14 @@ namespace e_Commerce.Web.Controllers
             return View(model);
         }
 
-        //[AppAuthorizeFilter(AuthCodeStatic.PAGE_PROFILE_ADD)]
+        [AppAuthorizeFilter(AuthCodeStatic.PAGE_PROFILE_ADD)]
         public ActionResult Add()
         {
             Models.Profile.AddViewModel model = new AddViewModel();
             return View(model);
         }
 
-        //[AppAuthorizeFilter(AuthCodeStatic.PAGE_PROFILE_ADD)]
+        [AppAuthorizeFilter(AuthCodeStatic.PAGE_PROFILE_ADD)]
         [HttpPost]
         public ActionResult Add(Models.Profile.AddViewModel model)
         {
@@ -126,7 +126,7 @@ namespace e_Commerce.Web.Controllers
         }
 
 
-       // [AppAuthorizeFilter(AuthCodeStatic.PAGE_PROFILE_EDIT)]
+        [AppAuthorizeFilter(AuthCodeStatic.PAGE_PROFILE_EDIT)]
         public ActionResult Edit(int id)
         {
             Models.Profile.AddViewModel model = new AddViewModel();
@@ -149,7 +149,7 @@ namespace e_Commerce.Web.Controllers
             return View(model);
         }
 
-       // [AppAuthorizeFilter(AuthCodeStatic.PAGE_PROFILE_EDIT)]
+        [AppAuthorizeFilter(AuthCodeStatic.PAGE_PROFILE_EDIT)]
         [HttpPost]
         public ActionResult Edit(Models.Profile.AddViewModel model)
         {

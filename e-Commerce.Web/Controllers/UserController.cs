@@ -51,7 +51,7 @@ namespace e_Commerce.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    return RedirectToAction("Index", "Home");
+                     return RedirectToAction("Index", "Home");
                 }
                 return View(model);
             }

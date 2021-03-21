@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using e_Commerce.Web.Models;
+using e_Commerce.Web.Business.Common;
 
 namespace e_Commerce.Web.Controllers
 {
@@ -20,6 +21,16 @@ namespace e_Commerce.Web.Controllers
 
         public IActionResult Index()
         {
+            if (SessionHelper.CurrentUser.ProfileList.Count>0)
+            {
+                foreach (var profile in SessionHelper.CurrentUser.ProfileList)
+                {
+                    if (profile.Code == "CUSTOMER")
+                    {
+                        return RedirectToAction("ListForCustomer", "Product");
+                    }
+                }
+            }
             return View();
         }
 
