@@ -2,6 +2,7 @@ Asp.Net Core Mvc - Basit Ticaret Uygulaması
 
 - Asp.net Core Mvc (3.1) ile oluşturulmuştur.
 - Asp.net Core Web API Mvc (3.1) ile oluşturulmuştur.
+
 Katmanlı mimari yapısı ile proje geliştirilmiştir. Mimari 5 katmandan oluşmaktadır:
 
 - e-Commerce.API
